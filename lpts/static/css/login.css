@@ -1,0 +1,15 @@
+#login-box {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    #child {
+    width: 55   0px;
+    height: auto;
+    padding:10px;
+    }
+    #h1{
+        font-weight: bold;
+        color:#fefefe;
+    }

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+<!-- https://stackoverflow.com/questions/39327418/how-to-retrieve-data-from-one-to-many-relations-in-django -->
+
+{% block content %}
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-sm-2">
+            <a href="{% url 'index' %}" class="btn btn-danger">Back</a>
+        </div>
+        
+           
+ 
+    <div class="row">
+        {% if profile %}
+        {% for data in profile %}
+        <div class="col-sm-4 py-3">
+            <div class="col-sm 12 col-md-3" style="width:20rem">
+                <div class="card mb-3">
+                    {% if data.acadamicYear == 'Alumni' %}
+                    <p class="card-header"><strong>{{data.Name}}</strong><span class="badge bg-warning mx-1">{{profile.acadamicYear}}</span></p>
+                    {% endif %}
+                    {% if data.acadamicYear == 'FirstYear' %}
+                    <p class="card-header"><strong>{{data.Name}}</strong><span class="badge bg-primary mx-1">{{profile.acadamicYear}}</span></p>
+                    {% endif %}
+                    {% if data.acadamicYear == 'SecondYear' %}
+                    <p class="card-header"><strong>{{data.Name}}</strong><span class="badge bg-success mx-1">{{profile.acadamicYear}}</span></p>
+                    {% endif %}
+                    <div class="card-body">
+                      <h6 class="card-subtitle text-muted">{{data.specalization}}</h6>
+                    </div>
+                    <img src="{{data.Image.url}}" class="card-img-top" alt="">
+                    <div class="card-body">
+                      <p class="card-text card-bio">{{data.bio}}</p>
+                      <!-- <a href="#" class="btn btn-secondary btn-sm" style="width:80px; font-size:14px; font-weight:bold; background-color: #292b2c;">More</a> -->
+                    </div>
+                    <div class="card-footer text-muted text-muted-footer">
+        
+                      <p style="font-size:13px; padding:0; margin:0;">
+                      <strong>{{data.Email}} </strong>  </p>  
+                      
+                    </div>
+                  </div>
+               </div> 
+               
+        </div>
+        {% endfor %}
+        {% else %}
+        <h2>No data found in the database</h2>
+        {% endif %}
+       <div class="col-sm-7">
+        <div class="row">
+            <div class="col-sm-5">
+                <form action="#">
+                <!-- {% csrf_token %} -->
+                <select name="spc" id="" class="form-control mx-3" onchange="this.form.submit()">
+                  <option>Filter by Course</option>
+                  <option value="ALL">All</option>
+                  <option value="continousCredits-ss">CC Soft Skills</option>
+                  <option value="continousCredits-hk">CC Programming</option>
+                  <option value="continousCredits-ps">CC Probem Solving</option>
+                  <option value="SoftSkills">Soft Skills</option>
+                  <option value="Technical">Technical</option>
+                </select>
+              </form>
+            </div>
+            
+          </div>
+           <div class="py-3">
+            
+               <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Course Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Remarks</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">More Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for course in studentData %}
+                       
+                        <tr>
+                            <td scope="row">{{course.courseName}}</td>
+                            <td scope="row">{{course.marks}}</td>
+                            <td scope="row">{{course.remarks}}</td>
+                            {% if course.status == 'Complete' %}
+                            <td scope="row"><span class="badge bg-success">{{course.status}}</span></td>
+                            {% else %}
+                            <td scope="row"><span class="badge bg-danger">{{course.status}}</span></td>
+
+                            {% endif %}
+                           <td scope="row"> <a href="#" class="btn btn-danger btn-sm" disabled>Know More</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+               </table>
+           </div>
+       </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/Timeline.css' %}">
+    <!-- Bootswatch -->
+    <!-- <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}"> -->
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+  <style>
+      .card-img-top{
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .card-bio{
+        height:100px;
+        overflow:auto;
+        border: none;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .text-muted-footer{
+        height:35px;
+        overflow: auto;
+      }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index'%}"><h3>Dashboard</h3></a>
+      <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        New user registration
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <form action="{% url 'index' %}" class="d-flex" name="sfilter">
+          <!-- {% csrf_token %} -->
+          <select name="selectspec" id="" class="form-control mx-3" onchange="this.form.submit()">
+            <option>Filter by specalization / year</option>
+            <option value="ALL">All</option>
+            <option value="Artifical Intelligence">Artifical Intelligence</option>
+            <option value="Cloud Computing">Cloud Computing</option>
+            <option value="Data Science">DataScience</option>
+            <option value="Full Stack Webdevelopment">Full Stack Webdebelopment</option>
+            <option value="Machine Learning">Machine Learning</option>
+            <option value="Ethical Hacking">Ethical Hacking</option>
+            <option value="Passed_out">Alumni students</option>
+            <option value="FirstYear">First Year</option>
+            <option value="SecondYear">Second Year</option>
+          </select>
+        </form>
+        <form class="d-flex" action="{% url 'index' %}">
+          <input class="form-control me-2" type="search" placeholder="Eg: John Doe" name="keyword" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Invitation for new registrations</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{% url 'sendEmail' %}" >
+          {% csrf_token %}
+          <label for="WhatsApp-Number">
+            <strong>WhatsApp Number</strong>
+          </label>
+          <input type="number" name="whatsApp" class="form-control" id="">
+          <strong>or</strong><br>
+          <label for="Email">
+            <strong> Email</strong>
+          </label>
+          <input type="email" name="Email" class="form-control" id="">
+      </div>
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-secondary btn-sm" >
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+    {% block content %}
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="{% static 'JavaScript/script.js' %}"></script>
+</body>
+</html>
