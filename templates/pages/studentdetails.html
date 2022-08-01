@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 <!-- https://stackoverflow.com/questions/39327418/how-to-retrieve-data-from-one-to-many-relations-in-django -->
-
+{% load static %}
 {% block content %}
 <div class="container">
     <div class="row pt-5">
         <div class="col-sm-2">
-            <a href="{% url 'index' %}" class="btn btn-danger">Back</a>
+            <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+        </div>
         </div>
         
            
@@ -78,7 +79,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Course Name</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Marks</th>
                             <th scope="col">Remarks</th>
                             <th scope="col">Status</th>
                             <th scope="col">More Details</th>
@@ -99,15 +100,35 @@
                             <td scope="row"><span class="badge bg-danger">{{course.status}}</span></td>
 
                             {% endif %}
-                           <td scope="row"> <a href="#" class="btn btn-danger btn-sm" disabled>Know More</a></td>
+                           <td scope="row"> <a href="#" class="btn btn-warning btn-sm" >Know More</a></td>
                         </tr>
                         {% endfor %}
                         {% else %}
-                        <h5>Not registerd for courses</h5>
+                        <h5><span style="color:red">Not registerd for courses</span></h5>
                         {% endif %}
                     </tbody>
                </table>
            </div>
+           <div class="pagination">
+            <div>
+              {% if studentData.has_previous %}
+                    <!-- <a href="?page=1">&laquo; first</a> -->
+                    <a class="btn btn-sm btn-secondary" href="?page={{ studentData.previous_page_number }}">previous</a>
+                {% endif %}
+            </div>
+            <div>
+              {% if studentData.has_next %}
+              <a  class="btn btn-sm btn-secondary" href="?page={{ studentData.next_page_number }}">next</a>
+              <!-- <a href="?page={{ studentData.paginator.num_pages }}">last &raquo;</a> -->
+          {% endif %}
+            </div>
+                <!-- This commented code is used to show the page number of pages -->
+                <!-- <span class="current">
+                    Page {{ studentData.number }} of {{ studentData.paginator.num_pages }}.
+                </span> -->
+        
+               
+        </div>
        </div>
     </div>
 </div>

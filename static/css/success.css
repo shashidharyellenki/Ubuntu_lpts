@@ -1,0 +1,45 @@
+/* Success message css */
+.card-box{
+    padding:50px 100px;
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    border-radius: 5px;
+}
+.card-box .card-img{
+    display: flex;
+    justify-content: center;
+}
+.card-box .card-img .success{
+    font-size: 150px;
+    color:#22b2da
+}
+.card-box .card-img img{
+    height:200px;
+}
+/* .card-box .card-body{
+
+} */
+
+.cbox{
+    height:100vh;
+}
+.card-box .card-body{
+    text-align: center;
+}
+.card-box .card-body a{
+    margin-top: 3px;
+    font-size: 23px;
+    background-color:#22b2da;
+    font-weight: bold;
+    outline: none;
+}
+/* error message css */
+.card-box .card-img .error{
+    font-size: 150px;
+    color:red
+}
+.card-box .card-img .error-img{
+   height: 200px;
+}

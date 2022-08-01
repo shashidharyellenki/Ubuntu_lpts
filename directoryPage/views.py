@@ -7,12 +7,11 @@ from . models import StudentCard, course
 from django.contrib import messages
 
 # from newUserReg.models import Register
-
+from django.core.paginator import Paginator
 from django.core.mail import send_mail
 # Create your views here.
 def index(request):
     student = StudentCard.objects.all() # stroing all the data from the database into student varibale
-    #filter by Name
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
@@ -41,6 +40,12 @@ def student(request, student_id):
     data = course.objects.all()
     filterData = data.filter(studentKey__id=student_id)
     profile = StudentCard.objects.all().filter(id=student_id)
+
+    # Paginator Function
+    itemPaginator = Paginator(filterData,8)
+    page_number=request.GET.get('page')
+    filterData=itemPaginator.get_page(page_number)
+
     if 'keywordd' in request.GET:
         spc = request.GET['keywordd']
         if spc:
