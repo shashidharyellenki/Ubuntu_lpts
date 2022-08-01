@@ -63,6 +63,13 @@
                 </select>
               </form>
             </div>
+              <div class="col-sm-5">
+                <form class="d-flex" action="#">
+                  <input class="form-control me-2" type="search" placeholder="Eg: Computer Systems" name="keywordd" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            
             
           </div>
            <div class="py-3">
@@ -78,6 +85,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                      
+                      {% if studentData %}
                         {% for course in studentData %}
                        
                         <tr>
@@ -93,6 +102,9 @@
                            <td scope="row"> <a href="#" class="btn btn-danger btn-sm" disabled>Know More</a></td>
                         </tr>
                         {% endfor %}
+                        {% else %}
+                        <h5>Not registerd for courses</h5>
+                        {% endif %}
                     </tbody>
                </table>
            </div>

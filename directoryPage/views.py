@@ -1,7 +1,10 @@
+from urllib.request import HTTPRedirectHandler
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 
 from . models import StudentCard, course
+
+from django.contrib import messages
 
 # from newUserReg.models import Register
 
@@ -38,6 +41,10 @@ def student(request, student_id):
     data = course.objects.all()
     filterData = data.filter(studentKey__id=student_id)
     profile = StudentCard.objects.all().filter(id=student_id)
+    if 'keywordd' in request.GET:
+        spc = request.GET['keywordd']
+        if spc:
+            filterData = data.filter(courseName__iexact=spc)
 
     if 'spc' in request.GET:
         spc = request.GET['spc']
@@ -51,10 +58,6 @@ def student(request, student_id):
             filterData = data.filter(continousCredits__iexact=spc)
         elif spc == 'Technical':
             filterData = data.filter(continousCredits__iexact=spc)
-
-
-
-
     context ={
         'studentData':filterData,
         'profile':profile,
@@ -69,11 +72,10 @@ def sendEmail(request):
         send_mail(
             'Application form',
             'www.google.com',
-            # f'We are glad to welcome you to IIITH Mr {StudentCard.Name} please fill the form to enroll in order to create perosalised dashboard to track all your details',
             'yellenkishashidhar@gmail.com',
-            [email, 'yellankishashidhar@gmail.com'],
-            fail_silently=True
+            [email, 'yellenkishashidhar@gmail.com'],
+            fail_silently=False
         )
-    return HttpResponse("reponse sent successfully")
+    return redirect('/')
 
 
