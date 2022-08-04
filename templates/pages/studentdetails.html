@@ -14,7 +14,7 @@
     <div class="row">
         {% if profile %}
         {% for data in profile %}
-        <div class="col-sm-4 py-3">
+        <div class="col-sm-12 col-md-4 py-3">
             <div class="col-sm 12 col-md-3" style="width:20rem">
                 <div class="card mb-3">
                     {% if data.acadamicYear == 'Alumni' %}
@@ -48,7 +48,7 @@
         {% else %}
         <h2>No data found in the database</h2>
         {% endif %}
-       <div class="col-sm-7">
+       <div class="col-sm-12 col-md-8">
         <div class="row">
             <div class="col-sm-5">
                 <form action="#">
@@ -58,7 +58,9 @@
                   <option value="ALL">All</option>
                   <option value="continousCredits-ss">CC Soft Skills</option>
                   <option value="continousCredits-hk">CC Programming</option>
-                  <option value="continousCredits-ps">CC Probem Solving</option>
+                  <option value="continous<span class="current">
+                    Page {{ studentData.number }} of {{ studentData.paginator.num_pages }}.
+                </span> Credits-ps">CC Probem Solving</option>
                   <option value="SoftSkills">Soft Skills</option>
                   <option value="Technical">Technical</option>
                 </select>
@@ -116,18 +118,17 @@
                     <a class="btn btn-sm btn-secondary" href="?page={{ studentData.previous_page_number }}">previous</a>
                 {% endif %}
             </div>
+            <span class="current">
+              Page {{ studentData.number }} of {{ studentData.paginator.num_pages }}.
+          </span> 
             <div>
               {% if studentData.has_next %}
               <a  class="btn btn-sm btn-secondary" href="?page={{ studentData.next_page_number }}">next</a>
               <!-- <a href="?page={{ studentData.paginator.num_pages }}">last &raquo;</a> -->
           {% endif %}
             </div>
-                <!-- This commented code is used to show the page number of pages -->
-                <!-- <span class="current">
-                    Page {{ studentData.number }} of {{ studentData.paginator.num_pages }}.
-                </span> -->
-        
-               
+                <!-- This commented code is used to show the page number of pages-->
+   
         </div>
        </div>
     </div>

@@ -45,7 +45,6 @@ def student(request, student_id):
     itemPaginator = Paginator(filterData,8)
     page_number=request.GET.get('page')
     filterData=itemPaginator.get_page(page_number)
-
     if 'keywordd' in request.GET:
         spc = request.GET['keywordd']
         if spc:
@@ -55,6 +54,7 @@ def student(request, student_id):
         spc = request.GET['spc']
         if spc == 'SoftSkills':
             filterData = data.filter(continousCredits__iexact=spc)
+            
         elif spc == "continousCredits-ss":
             filterData = data.filter(continousCredits__iexact=spc)
         elif spc == "continousCredits-ps":
