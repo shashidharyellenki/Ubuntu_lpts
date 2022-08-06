@@ -12,7 +12,7 @@
     {% if student %} 
     {% for stud in student %}
     
-       <div class="col-sm 12 col-md-3" style="width:20rem">
+       <div class="col-sm-3" style="width:20rem">
         <div class="card mb-3">
             {% if stud.acadamicYear == 'Alumni' %}
             <p class="card-header"><strong>{{stud.Name}}</strong><span class="badge bg-warning mx-1">{{stud.acadamicYear}}</span></p>
@@ -44,7 +44,7 @@
        {% endfor %}
        {% else %}
        <div class="row">
-         <div class="col-sm-12 col-md-6">
+         <div class="col-sm-3">
            <h1>No records in the database</h1>
          </div> 
        </div>
