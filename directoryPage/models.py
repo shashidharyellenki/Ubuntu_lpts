@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 class StudentCard(models.Model):
     Name = models.CharField(max_length=50, blank=False)
@@ -51,5 +50,15 @@ class course(models.Model):
     def __str__(self):
         return self.courseName
 
+
+
+# to add courses to the students
+class Add_Course(models.Model):
+    Student_name = models.ForeignKey(StudentCard, on_delete=models.CASCADE)
+    Course_to_be_Add = models.ForeignKey(course, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.Student_name.Name
 
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from . models import StudentCard, course
+from . models import StudentCard, course,Add_Course
 class courseAdmin(admin.ModelAdmin):
     list_display= ('id', 'courseName', 'status', 'continousCredits')
     list_display_links= ('courseName' ,)
@@ -14,3 +14,7 @@ class StudentCardAdmin(admin.ModelAdmin):
     list_filter=('specalization','acadamicYear')
 admin.site.register(StudentCard, StudentCardAdmin)
 
+
+class AddCourseAdmin(admin.ModelAdmin):
+    list_display=('id','Student_name')
+admin.site.register(Add_Course, AddCourseAdmin)
