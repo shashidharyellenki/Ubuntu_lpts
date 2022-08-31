@@ -92,17 +92,30 @@
                       
                       {% if studentData %}
                         {% for course in studentData %}
-                       
-                        <tr>
-                            <td scope="row">{{course.courseName}}</td>
-                            <td scope="row">{{course.marks}}</td>
-                            <td scope="row">{{course.remarks}}</td>
-                            <td scop="row">{{course.courseDuration}} weeks</td>
-                            {% if course.status == 'Complete' %}
-                            <td scope="row"><span class="badge bg-success">{{course.status}}</span></td>
-                            {% else %}
-                            <td scope="row"><span class="badge bg-danger">{{course.status}}</span></td>
 
+                        <tr>
+                            <td scope="row">{{course.Name}}</td>
+                            <td scope="row">{{course.Max_marks}}</td>
+                            <td scope="row">{{course.Remarks}}</td>
+                            <td scop="row">{{course.Max_duration}} weeks</td>
+                            {% if course.Grades == 'Enrolled' %}
+                                  <td scope="row"><span class="badge bg-secondary">{{course.Grades}}</span></td>
+                            {% endif %}
+
+                            {% if course.Grades == 'Mastery' %}
+                              <td scope="row"><span class="badge bg-warning">{{course.Grades}}</span></td>
+                            {% endif %}
+
+                            {% if course.Grades == 'Exemplary' %}
+                              <td scope="row"><span class="badge bg-success">{{course.Grades}}</span></td>
+                            {% endif %}
+
+                            {% if course.Grades == 'Incomplete' %}
+                              <td scope="row"><span class="badge bg-danger">{{course.Grades}}</span></td>
+                            {% endif %}
+
+                            {% if course.Grades == 'Pending' %}
+                              <td scope="row"><span class="badge bg-drak">{{course.Grades}}</span></td>
                             {% endif %}
                            <td scope="row"> <a href="{% url 'details' course.id %}" class="btn btn-warning btn-sm" >Know More</a></td>
                         </tr>

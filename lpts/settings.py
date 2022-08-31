@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'directoryPage',
     'newUserReg',
-    'Level2'
 ]
 
 MIDDLEWARE = [

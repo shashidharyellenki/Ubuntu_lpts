@@ -1,4 +1,17 @@
-.card{
-    padding:30px 25px;
-    background-color: red;
+/* .card-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin:10px;
+    border-left: 3px solid red;
+
 }
+.card{
+    width:400px;
+    height:200px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 50%;
+    align-items: center;
+    margin-top:10px;
+
+} */

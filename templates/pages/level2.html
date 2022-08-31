@@ -1,38 +1,82 @@
 {% extends 'base.html' %}
 
 
+
 {% block content %}
+
 {% if data_set %}
 
 <div class="container-fluid" >
+    <a class="btn btn-secondary m-3" href="{% url 'index' %}">Back</a>
     <div class="row">
         {% for data in data_set %}
         <div class="col-sm-6 col-md-4 col-xl-3" style=" margin-top:20px" >
             <!-- This if condtion gives green border when the student gets Mastery -->
-            {% if data.result == 'Mastery' %}
-                    <div class="card" style=" border-left:8px solid green; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; width:400px">
+            {% if data.Grades == 'Enrolled' %}
+                    <div class="card" style="border-left:8px solid rgb(172, 173, 172); box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; width:400px;">
             {% endif %}
 
             <!-- This if condtion gives orange border when the student gets Satisfactory -->
-            {% if data.result == 'Satisfactory' %}
+            {% if data.Grades == 'Mastery' %}
                 <div class="card" style=" border-left:8px solid orange; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; width:400px">
             {% endif %}
 
             <!-- This if condtion gives Gold border when the student gets exemplary -->
-            {% if data.result == 'Exmplary' %}
-                <div class="card" style=" border-left:8px solid gold; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; width:400px">
+            {% if data.Grades == 'Exemplary' %}
+                <div class="card" style=" border-left:8px solid rgb(48, 194, 73); box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; width:400px"> 
             {% endif %}
 
-            
+             <!-- This if condtion gives Gold border when the student gets exemplary -->
+             {% if data.Grades == 'Incomplete' %}
+                 <div class="card" style=" border-left:8px solid red; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; width:400px"> 
+            {% endif %}
+                    
+
+          <!-- This if condtion gives Gold border when the student gets exemplary -->
+          {% if data.Grades == 'Pending' %}
+                <div class="card" style=" border-left:8px solid black; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; width:400px"> 
+          {% endif %}
+
                 <div class="card-body " >
-                    <h6>{{data.Project_name}}</h6>
+                    <h3 style="font-family:Kalam" ><strong>{{data.Name}}</strong></h3>
                     <div class="d-flex justify-content-between">
-                        <p>Number of topic- {{data.total_topics}}</p>
-                        <p>Status: Completed<h6/>
+                        {% if data.Difficulty == 'Easy' %}
+                        <h6><span style="font-weight:500">Difficulty Level</span> - <span style="color:green; font-family:Kalam; font-weight:bold">{{data.Difficulty}}</span></h6>
+                        {% endif %}
+
+                        {% if data.Difficulty == 'Medium' %}
+                        <h6><span style="font-weight:500">Difficulty Level</span> - <span style="color:orange; font-family:Kalam; font-weight:bold">{{data.Difficulty}}</span></h6>
+                        {% endif %}
+
+                        {% if data.Difficulty == 'Advanced' %}
+                        <h6><span style="font-weight:500 ">Difficulty Level</span> - <span style="color:red; font-family:Kalam; font-weight:bold">{{data.Difficulty}}</span></h6>
+                        {% endif %}
+
+                        {% if data.Grades == 'Enrolled' %}
+                            <h6><span style="font-weight:500">Status</span> - <span style="font-weight:700; font-family:Kalam">{{data.Grades}}</span></h6>
+                        {% endif %}
+
+                        {% if data.Grades == 'Mastery' %}
+                            <h6><span style="font-weight:500;">Status</span> - <span style="font-weight:700; font-family:Kalam">{{data.Grades}}</span></h6>
+                        {% endif %}
+
+                        {% if data.Grades == 'Exemplary' %}
+                            <h6><span style="font-weight:500;">Status</span> - <span style="font-weight:700; font-family:Kalam">{{data.Grades}}</span></h6>
+                        {% endif %}
+
+                        {% if data.Grades == 'Incomplete' %}
+                            <h6><span style="font-weight:500;">Status</span> - <span style="font-weight:700; font-family:Kalam">{{data.Grades}}</span></h6>
+                        {% endif %}
+
+                        {% if data.Grades == 'Pending' %}
+                            <h6><span style="font-weight:500;">Status</span> - <span style="font-weight:700; font-family:Kalam">{{data.Grades}}</span></h6>
+                        {% endif %}
+
                     </div>
+
                     <div class="d-flex justify-content-between">
-                        <p>Result: {{data.result}}</p>
-                        <p><a href="#">View More</a></p>
+                    <h6> Remarks: {{data.Remarks}}</h6>
+                        <p><a class="btn btn-outline-primary p-2" href="{% url 'CourseIndepthDetails' data.id %}">View More</a></p>
                     </div>
                 </div>
             </div>
